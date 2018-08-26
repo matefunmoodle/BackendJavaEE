@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+	version="2.1">
+
+<!-- 	<persistence-unit name="matefunDS" transaction-type="JTA"> -->
+<!-- 		<jta-data-source>java:/matefun</jta-data-source> -->
+<!-- 		<class>edu.proygrado.modelo.Alumno</class> -->
+<!-- 		<class>edu.proygrado.modelo.Archivo</class> -->
+<!-- 		<class>edu.proygrado.modelo.Configuracion</class> -->
+<!-- 		<class>edu.proygrado.modelo.Docente</class> -->
+<!-- 		<class>edu.proygrado.modelo.Evaluacion</class> -->
+<!-- 		<class>edu.proygrado.modelo.Grupo</class> -->
+<!-- 		<class>edu.proygrado.modelo.GrupoPK</class> -->
+<!-- 		<class>edu.proygrado.modelo.Liceo</class> -->
+<!-- 		<class>edu.proygrado.modelo.LiceoPK</class> -->
+<!-- 		<class>edu.proygrado.modelo.Usuario</class> -->
+<!-- 		<class>edu.proygrado.modelo.Sesion</class> -->
+<!-- 		<properties> -->
+<!-- 			<property name="javax.persistence.schema-generation.database.action" value="none" /> -->
+<!-- 			<property name="hibernate.hbm2ddl.auto" value="update"/> -->
+<!-- 		</properties> -->
+<!-- 	</persistence-unit> -->
+
+	<persistence-unit name="matefunDS" transaction-type="JTA">
+	<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+	<jta-data-source>java:/matefun</jta-data-source>
+	<class>edu.proygrado.modelo.Alumno</class>
+	<class>edu.proygrado.modelo.Archivo</class>
+	<class>edu.proygrado.modelo.Configuracion</class>
+	<class>edu.proygrado.modelo.Docente</class>
+	<class>edu.proygrado.modelo.Evaluacion</class>
+	<class>edu.proygrado.modelo.Grupo</class>
+	<class>edu.proygrado.modelo.GrupoPK</class>
+	<class>edu.proygrado.modelo.Liceo</class>
+	<class>edu.proygrado.modelo.LiceoPK</class>
+	<class>edu.proygrado.modelo.Usuario</class>
+	<class>edu.proygrado.modelo.Sesion</class>
+	<properties>
+	<property name="javax.persistence.schema-generation.database.action" value="none" />
+	<property name="hibernate.transaction.jta.platform" value="org.hibernate.engine.transaction.jta.platform.internal.WebSphereExtendedJtaPlatform"/>
+	</properties>
+	</persistence-unit>
+
+
+</persistence>
