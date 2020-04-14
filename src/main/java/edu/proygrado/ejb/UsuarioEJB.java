@@ -1,12 +1,16 @@
 package edu.proygrado.ejb;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.json.JsonArray;
+import javax.json.JsonObject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
+import edu.proygrado.dto.AllUsersResultDTO;
 import edu.proygrado.dto.ArchivoDTO;
 import edu.proygrado.dto.BackupAlumnoDTO;
 import edu.proygrado.dto.BackupDocenteDTO;
@@ -14,7 +18,9 @@ import edu.proygrado.dto.BackupUsuarioDTO;
 import edu.proygrado.dto.ConfiguracionDTO;
 import edu.proygrado.dto.EvaluacionDTO;
 import edu.proygrado.dto.GrupoDTO;
+import edu.proygrado.dto.UserResultDTO;
 import edu.proygrado.matefun.MatefunException;
+import edu.proygrado.modelo.Admin;
 import edu.proygrado.modelo.Alumno;
 import edu.proygrado.modelo.Archivo;
 import edu.proygrado.modelo.Configuracion;
@@ -25,12 +31,18 @@ import edu.proygrado.modelo.Grupo;
 import edu.proygrado.modelo.GrupoPK;
 import edu.proygrado.modelo.LiceoPK;
 import edu.proygrado.modelo.Usuario;
+import edu.proygrado.utils.MoodleFunctions;
+import edu.proygrado.utils.MoodleWS;
+import edu.proygrado.utils.StringPair;
 
 @Stateless
 public class UsuarioEJB {
 	
 	@PersistenceContext(unitName = "matefunDS")
     private EntityManager em;
+	
+	@EJB
+	private InvitadoEJB invitadoEJB;
 	
 	public ConfiguracionDTO actualizarConfiguracion(String cedula, ConfiguracionDTO configuracion) throws Exception{
 		Usuario usuario;
@@ -96,7 +108,6 @@ public class UsuarioEJB {
 		alumno.setCedula(backupAlumnoDTO.getCedula());
 		alumno.setNombre(backupAlumnoDTO.getNombre());
 		alumno.setApellido(backupAlumnoDTO.getApellido());
-		alumno.setPassword(backupAlumnoDTO.getPassword());
 		alumno.setArchivos(new ArrayList<>());
 		alumno.setArchivosCompartidos(new ArrayList<>());
 		Configuracion config = new Configuracion(backupAlumnoDTO.getConfiguracion());
@@ -206,7 +217,6 @@ public class UsuarioEJB {
 		docente.setCedula(backupDocenteDTO.getCedula());
 		docente.setNombre(backupDocenteDTO.getNombre());
 		docente.setApellido(backupDocenteDTO.getApellido());
-		docente.setPassword(backupDocenteDTO.getPassword());
 		docente.setArchivos(new ArrayList<>());
 		docente.setGruposAsignados(new ArrayList<>());
 		Configuracion config = new Configuracion(backupDocenteDTO.getConfiguracion());
@@ -377,6 +387,53 @@ public class UsuarioEJB {
 		}
 		
 		return "Usuario y recursos eliminados";
+	}
+	
+	private static List<String> getSkippedUsers() {
+		//TODO: hacer bien esto
+		List<String> result = new ArrayList<String>();
+		result.add("guest");
+		result.add("admin");
+		result.add("wsuser");
+		return result;
+	}
+	
+	public String getMatefunAdminUsername() {
+		try {
+			return em.createQuery("select a from Admin a", Admin.class).getSingleResult().getCedula();
+		} catch (Exception ex) { 
+			ex.printStackTrace();
+		}
+		return null;
+	}
+	
+	
+	@SuppressWarnings("serial")
+	public List<UserResultDTO> getAllNonSuspendedUsers(String loggedUserToken, StringPair criteria) throws Exception{
+
+		//parameters
+		Map<String, Object> params = new HashMap<String, Object>() {{
+	        put("criteria[0][key]", criteria.getKey() );
+	        put("criteria[0][value]", criteria.getValue() );
+	    }};
+
+	    JsonObject result = MoodleWS.GET(invitadoEJB, loggedUserToken, MoodleFunctions.core_user_get_users, params, true);
+	    
+	    if (!result.getBoolean(MoodleWS.IS_OK)) {
+	    	throw new MatefunException("No se puede obtener informacion de usuarios con core_user_get_users");
+	    }else {
+	    	
+	    	JsonArray users = result.getJsonObject("result").getJsonArray("users");
+		    AllUsersResultDTO userInfo = new AllUsersResultDTO();
+		    userInfo.setWarnings(null);
+		    userInfo.setUsers(new ArrayList<UserResultDTO>());		    
+		    
+		    //List<String> skippedUsers = getSkippedUsers(); //TODO: como esta funcion ahora es generica, sacar el skippedUsers para afuera
+		    for (int i = 0; i < users.size(); ++i)
+		    	userInfo.getUsers().add(new UserResultDTO(users.getJsonObject(i)));
+
+			return userInfo.getUsers();
+	    }
 	}
 
 }

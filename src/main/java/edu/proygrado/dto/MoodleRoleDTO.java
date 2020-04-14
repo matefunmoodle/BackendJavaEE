@@ -9,6 +9,12 @@ public class MoodleRoleDTO {
 	private String shortname;
 	private Long sortorder;
 	
+	@Override
+	public String toString() {
+		return "[roleId:"+this.roleid+", roleShortName:"+this.shortname+"]";
+		
+	}
+	
 	public Long getRoleid() {
 		return roleid;
 	}

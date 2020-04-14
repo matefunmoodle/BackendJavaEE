@@ -8,7 +8,6 @@ public class BackupUsuarioDTO {
 	String cedula;
 	String nombre;
 	String apellido;
-	String password;
 	ConfiguracionDTO configuracion;
 	
 	public BackupUsuarioDTO(){}
@@ -22,7 +21,6 @@ public class BackupUsuarioDTO {
 		this.cedula = usuario.getCedula();
 		this.nombre = usuario.getNombre();
 		this.apellido = usuario.getApellido();
-		this.password = usuario.getPassword();
 		this.configuracion = new ConfiguracionDTO(usuario.getConfiguracion());
 	}
 
@@ -56,14 +54,6 @@ public class BackupUsuarioDTO {
 
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public ConfiguracionDTO getConfiguracion() {

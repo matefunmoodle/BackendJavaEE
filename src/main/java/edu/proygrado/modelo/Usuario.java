@@ -2,7 +2,6 @@
 package edu.proygrado.modelo;
 
 import java.io.Serializable;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -14,28 +13,35 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public abstract class Usuario implements Serializable {
-    /**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	@Id
     String cedula;
+	Long moodleUserId;
     String nombre;
     String apellido;
-    String password;
-    @OneToOne(cascade = CascadeType.ALL)    
+    
+    
+    @OneToOne(cascade = CascadeType.DETACH)
+    Liceo liceo;
+    
+    @OneToOne(cascade = CascadeType.ALL)
     Configuracion configuracion;
 
     public Usuario() {
     }
 
-    public Usuario(String cedula, String nombre, String apellido, String password, Configuracion configuracion) {
+
+    public Usuario(String cedula, Long moodleUserId, String nombre, String apellido, Liceo liceo, Configuracion configuracion) {
         this.cedula = cedula;
+        this.moodleUserId = moodleUserId;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.password = password;
         this.configuracion = configuracion;
+        this.liceo = liceo;
     }
+    
+    public abstract String getTipo();
     
     public String getCedula() {
         return cedula;
@@ -61,14 +67,6 @@ public abstract class Usuario implements Serializable {
         this.apellido = apellido;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
 	public Configuracion getConfiguracion() {
 		return configuracion;
 	}
@@ -77,5 +75,25 @@ public abstract class Usuario implements Serializable {
 		this.configuracion = configuracion;
 	}
 
+	public Long getMoodleUserId() {
+		return moodleUserId;
+	}
+
+
+	public void setMoodleUserId(Long moodleUserId) {
+		this.moodleUserId = moodleUserId;
+	}
+
+
+	public Liceo getLiceo() {
+		return liceo;
+	}
+
+
+	public void setLiceo(Liceo liceo) {
+		this.liceo = liceo;
+	}
 	
+	public abstract void addArchivo (Archivo a);
+
 }

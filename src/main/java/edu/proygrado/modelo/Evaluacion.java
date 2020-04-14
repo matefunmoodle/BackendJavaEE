@@ -32,7 +32,7 @@ public class Evaluacion implements Serializable {
     private Docente docente;
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date fecha;
-    private int nota;
+    private String nota;
     private String descripcion;
 
     public long getEvaluacionId() {
@@ -51,11 +51,11 @@ public class Evaluacion implements Serializable {
         this.docente = docente;
     }
 
-    public int getNota() {
+    public String getNota() {
         return nota;
     }
 
-    public void setNota(int nota) {
+    public void setNota(String nota) {
         this.nota = nota;
     }
 

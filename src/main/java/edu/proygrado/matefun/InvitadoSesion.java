@@ -3,8 +3,10 @@ package edu.proygrado.matefun;
 import java.util.Date;
 import java.util.List;
 
+import edu.proygrado.dto.MoodleCoursesInfoDTO;
 import edu.proygrado.modelo.Archivo;
 import edu.proygrado.modelo.Usuario;
+import edu.proygrado.utils.StringPair;
 
 public class InvitadoSesion {
 	private Date creada;
@@ -12,10 +14,29 @@ public class InvitadoSesion {
 	private List<Archivo> archivosCompartidos;
 	private List<Archivo> archivosGrupo;
 	private Usuario usuario;
+	private String moodleApiEndpoint;
+	private Long liceoId;
 	
-	public InvitadoSesion(Usuario usuario){
+	private MoodleCoursesInfoDTO coursesInfo;
+	private Long moodleWebServicesUserId;
+	private List<StringPair> allMoodleTokens;
+	
+	public InvitadoSesion(Usuario usuario, String moodleApiEndpoint, List<StringPair> allMoodleTokens, Long liceoId, MoodleCoursesInfoDTO coursesInfo, Long moodleWebServicesUserId) {
 		this.creada = new Date();
-		this.usuario = usuario;		
+		this.liceoId = liceoId;
+		this.usuario = usuario;
+		this.moodleApiEndpoint = moodleApiEndpoint;
+		this.allMoodleTokens = allMoodleTokens;
+		this.coursesInfo = coursesInfo;
+		this.moodleWebServicesUserId = moodleWebServicesUserId;
+	}
+	
+	public List<StringPair> getAllMoodleTokens() {
+		return allMoodleTokens;
+	}
+
+	public void setAllMoodleTokens(List<StringPair> allMoodleTokens) {
+		this.allMoodleTokens = allMoodleTokens;
 	}
 	
 	public Date getCreada() {
@@ -48,4 +69,42 @@ public class InvitadoSesion {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
+	public String getMoodleApiEndpoint() {
+		return moodleApiEndpoint;
+	}
+
+	public void setMoodleApiEndpoint(String moodleApiEndpoint) {
+		this.moodleApiEndpoint = moodleApiEndpoint;
+	}
+	
+	public long getMoodleUserId() {
+		return coursesInfo.getId();
+	}
+
+	public Long getLiceoId() {
+		return liceoId;
+	}
+
+	public void setLiceoId(Long liceoId) {
+		this.liceoId = liceoId;
+	}
+
+	public long getMoodleWebServicesUserId() {
+		return moodleWebServicesUserId;
+	}
+	
+	public void setMoodleWebServicesUserId(Long moodleWebServicesUserId) {
+		this.moodleWebServicesUserId = moodleWebServicesUserId;
+	}
+
+	public MoodleCoursesInfoDTO getCoursesInfo() {
+		return coursesInfo;
+	}
+
+	public void setCoursesInfo(MoodleCoursesInfoDTO coursesInfo) {
+		this.coursesInfo = coursesInfo;
+	}
+
+
 }

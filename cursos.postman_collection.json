@@ -1,0 +1,681 @@
+{
+	"info": {
+		"_postman_id": "1d67af24-1fa4-46bc-b18c-58b3f902699d",
+		"name": "cursos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "crear-curso",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "courses[0][fullname]",
+							"value": "Un curso creado con WS",
+							"type": "text"
+						},
+						{
+							"key": "courses[0][shortname]",
+							"value": "OtroCursoWs",
+							"type": "text"
+						},
+						{
+							"key": "courses[0][categoryid]",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "courses[0][idnumber]",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "courses[0][summary]",
+							"value": "Este curso sirve para cursar",
+							"type": "text"
+						},
+						{
+							"key": "courses[0][summaryformat]",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "courses[0][format]",
+							"value": "varsovia",
+							"type": "text"
+						},
+						{
+							"key": "courses[0][showgrades]",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "courses[0][newsitems]",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "courses[0][startdate]",
+							"value": "20180101",
+							"type": "text"
+						},
+						{
+							"key": "courses[0][enddate]",
+							"value": "20200101",
+							"type": "text"
+						},
+						{
+							"key": "courses[0][numsections]",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "courses[0][maxbytes]",
+							"value": "65536",
+							"type": "text"
+						},
+						{
+							"key": "courses[0][showreports]",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "courses[0][visible]",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "courses[0][hiddensections]",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "courses[0][groupmode]",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "courses[0][groupmodeforce]",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "courses[0][defaultgroupingid]",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "courses[0][enablecompletion]",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "courses[0][completionnotify]",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "courses[0][lang]",
+							"value": "es",
+							"type": "text"
+						},
+						{
+							"key": "courses[0][forcetheme]",
+							"value": "theme",
+							"type": "text"
+						},
+						{
+							"key": "courses[0][courseformatoptions][0][name]",
+							"value": "varsovia",
+							"type": "text"
+						},
+						{
+							"key": "courses[0][courseformatoptions][0][value]",
+							"value": "varsovia",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://matefun.moodlecloud.com/webservice/rest/server.php?wstoken=b3ddd49822a81a429a45afbcd14bb0ed&wsfunction=core_course_create_courses&moodlewsrestformat=json&courses[0][fullname]=matematica5&courses[0][shortname]=matematica6&courses[0][categoryid]=1&courses[0][summary]=CursoCreadoConMatefun&courses[0][summaryformat]=1&courses[0][format]=topics&courses[0][showgrades]=1&courses[0][newsitems]=5&courses[0][maxbytes]=0&courses[0][showreports]=0&courses[0][groupmode]=0&courses[0][groupmodeforce]=0&courses[0][defaultgroupingid]=0",
+					"protocol": "https",
+					"host": [
+						"matefun",
+						"moodlecloud",
+						"com"
+					],
+					"path": [
+						"webservice",
+						"rest",
+						"server.php"
+					],
+					"query": [
+						{
+							"key": "wstoken",
+							"value": "b3ddd49822a81a429a45afbcd14bb0ed"
+						},
+						{
+							"key": "wsfunction",
+							"value": "core_course_create_courses"
+						},
+						{
+							"key": "moodlewsrestformat",
+							"value": "json"
+						},
+						{
+							"key": "courses[0][fullname]",
+							"value": "matematica5"
+						},
+						{
+							"key": "courses[0][shortname]",
+							"value": "matematica6"
+						},
+						{
+							"key": "courses[0][categoryid]",
+							"value": "1"
+						},
+						{
+							"key": "courses[0][summary]",
+							"value": "CursoCreadoConMatefun"
+						},
+						{
+							"key": "courses[0][summaryformat]",
+							"value": "1"
+						},
+						{
+							"key": "courses[0][format]",
+							"value": "topics"
+						},
+						{
+							"key": "courses[0][showgrades]",
+							"value": "1"
+						},
+						{
+							"key": "courses[0][newsitems]",
+							"value": "5"
+						},
+						{
+							"key": "courses[0][maxbytes]",
+							"value": "0"
+						},
+						{
+							"key": "courses[0][showreports]",
+							"value": "0"
+						},
+						{
+							"key": "courses[0][groupmode]",
+							"value": "0"
+						},
+						{
+							"key": "courses[0][groupmodeforce]",
+							"value": "0"
+						},
+						{
+							"key": "courses[0][defaultgroupingid]",
+							"value": "0"
+						}
+					]
+				},
+				"description": "crear-curso"
+			},
+			"response": []
+		},
+		{
+			"name": "core_course_get_courses",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "939cc358-5394-4c2f-b914-0d5d94996739",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://matefun.moodlecloud.com/webservice/rest/server.php?wstoken=b3ddd49822a81a429a45afbcd14bb0ed&wsfunction=core_course_get_courses&moodlewsrestformat=json",
+					"protocol": "https",
+					"host": [
+						"matefun",
+						"moodlecloud",
+						"com"
+					],
+					"path": [
+						"webservice",
+						"rest",
+						"server.php"
+					],
+					"query": [
+						{
+							"key": "wstoken",
+							"value": "b3ddd49822a81a429a45afbcd14bb0ed"
+						},
+						{
+							"key": "wsfunction",
+							"value": "core_course_get_courses"
+						},
+						{
+							"key": "moodlewsrestformat",
+							"value": "json"
+						}
+					]
+				},
+				"description": " cursos del logueado, no mas"
+			},
+			"response": []
+		},
+		{
+			"name": "getAllUsers",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "939cc358-5394-4c2f-b914-0d5d94996739",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://matefun.moodlecloud.com/webservice/rest/server.php?wstoken=b3ddd49822a81a429a45afbcd14bb0ed&wsfunction=core_user_get_users&criteria[0][key]=suspended&criteria[0][value]=false&moodlewsrestformat=json",
+					"protocol": "https",
+					"host": [
+						"matefun",
+						"moodlecloud",
+						"com"
+					],
+					"path": [
+						"webservice",
+						"rest",
+						"server.php"
+					],
+					"query": [
+						{
+							"key": "wstoken",
+							"value": "b3ddd49822a81a429a45afbcd14bb0ed"
+						},
+						{
+							"key": "wsfunction",
+							"value": "core_user_get_users"
+						},
+						{
+							"key": "criteria[0][key]",
+							"value": "suspended"
+						},
+						{
+							"key": "criteria[0][value]",
+							"value": "false"
+						},
+						{
+							"key": "moodlewsrestformat",
+							"value": "json"
+						}
+					]
+				},
+				"description": " get users"
+			},
+			"response": []
+		},
+		{
+			"name": "enroll in a course",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "939cc358-5394-4c2f-b914-0d5d94996739",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://matefun.moodlecloud.com/webservice/rest/server.php?wstoken=b3ddd49822a81a429a45afbcd14bb0ed&wsfunction=enrol_manual_enrol_users&enrolments[0][roleid]=1&enrolments[0][userid]=12&enrolments[0][courseid]=9&moodlewsrestformat=json",
+					"protocol": "https",
+					"host": [
+						"matefun",
+						"moodlecloud",
+						"com"
+					],
+					"path": [
+						"webservice",
+						"rest",
+						"server.php"
+					],
+					"query": [
+						{
+							"key": "wstoken",
+							"value": "b3ddd49822a81a429a45afbcd14bb0ed"
+						},
+						{
+							"key": "wsfunction",
+							"value": "enrol_manual_enrol_users"
+						},
+						{
+							"key": "enrolments[0][roleid]",
+							"value": "1"
+						},
+						{
+							"key": "enrolments[0][userid]",
+							"value": "12"
+						},
+						{
+							"key": "enrolments[0][courseid]",
+							"value": "9"
+						},
+						{
+							"key": "moodlewsrestformat",
+							"value": "json"
+						}
+					]
+				},
+				"description": "enroll in a course"
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://matefun.moodlecloud.com/login/token.php?username=wsuser&password=Matefun1.&service=sample",
+					"protocol": "https",
+					"host": [
+						"matefun",
+						"moodlecloud",
+						"com"
+					],
+					"path": [
+						"login",
+						"token.php"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "wsuser"
+						},
+						{
+							"key": "password",
+							"value": "Matefun1."
+						},
+						{
+							"key": "service",
+							"value": "sample"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete course",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://matefun.moodlecloud.com/webservice/rest/server.php?wstoken=b3ddd49822a81a429a45afbcd14bb0ed&wsfunction=core_course_delete_courses&courseids[0]=2&moodlewsrestformat=json",
+					"protocol": "https",
+					"host": [
+						"matefun",
+						"moodlecloud",
+						"com"
+					],
+					"path": [
+						"webservice",
+						"rest",
+						"server.php"
+					],
+					"query": [
+						{
+							"key": "wstoken",
+							"value": "b3ddd49822a81a429a45afbcd14bb0ed"
+						},
+						{
+							"key": "wsfunction",
+							"value": "core_course_delete_courses"
+						},
+						{
+							"key": "courseids[0]",
+							"value": "2"
+						},
+						{
+							"key": "moodlewsrestformat",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getUsersByCourse",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://matefun.moodlecloud.com/webservice/rest/server.php?wstoken=b3ddd49822a81a429a45afbcd14bb0ed&wsfunction=core_enrol_get_enrolled_users&courseid=8&moodlewsrestformat=json",
+					"protocol": "https",
+					"host": [
+						"matefun",
+						"moodlecloud",
+						"com"
+					],
+					"path": [
+						"webservice",
+						"rest",
+						"server.php"
+					],
+					"query": [
+						{
+							"key": "wstoken",
+							"value": "b3ddd49822a81a429a45afbcd14bb0ed"
+						},
+						{
+							"key": "wsfunction",
+							"value": "core_enrol_get_enrolled_users"
+						},
+						{
+							"key": "courseid",
+							"value": "8"
+						},
+						{
+							"key": "moodlewsrestformat",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Matefun]Login en Matefun",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"cedula\":\"alumno1\",\"password\":\"Matefun1.\",\"liceo\":\"1\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/servicios/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"servicios",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Matefun]DeleteCourse",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer rscse9jsf9puurfigugphlm6ss",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"courseId\": 2,\n    \"courseName\": \"\",\n    \"roleId\": 0,\n    \"roleName\": \"\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/servicios/cursos/delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"servicios",
+						"cursos",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Matefun]Create Course",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer 674vmr4bf2cg5s2hviehgfm5j9"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fullname\" : \"matematica200\",\n\t\"shortname\" : \"matematica200\",\n\t\"categoryid\" : 1,\n\t\"summary\" : \"CursoCreadoConMatefun200\",\n\t\"summaryformat\" : 1,\n\t\"format\" : \"topics\",\n\t\"showgrades\" : 1,\n\t\"newsitems\" : 1,\n\t\"maxbytes\" : 0,\n\t\"showreports\" : 0,\n\t\"groupmode\" : 0,\n\t\"groupmodeforce\" : 0,\n\t\"defaultgroupingid\" : 0, \n\t\"firstProfessorUserId\" : \"1\",\n\t\"firstProfessorRoleId\" : \"1\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/servicios/cursos/createNewCourse",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"servicios",
+						"cursos",
+						"createNewCourse"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[MATEFUN] getAllNonSuspendedUsers",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer hbdct5tkao80u68k0l652ctumt",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/servicios/usuario/getAllNonSuspendedUsers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"servicios",
+						"usuario",
+						"getAllNonSuspendedUsers"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

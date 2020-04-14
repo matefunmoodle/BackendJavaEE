@@ -4,11 +4,16 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.json.JsonObject;
+
 import edu.proygrado.modelo.Alumno;
 import edu.proygrado.modelo.Archivo;
 
 public class AlumnoDTO implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+	
+	Long moodleUserId;
 	String cedula;
 	String nombre;
 	String apellido;
@@ -17,8 +22,20 @@ public class AlumnoDTO implements Serializable{
 	
 	public AlumnoDTO(){}
 	
+	public AlumnoDTO(JsonObject user, List<ArchivoDTO> archivos, List<ArchivoDTO> archivosCompartidos) {
+		super();
+		
+		this.moodleUserId = new Long(user.getInt("id"));
+		this.cedula = null;
+		this.nombre = user.containsKey("firstname") ? user.getString("firstname") : (user.containsKey("fullname") ? user.getString("fullname").split(" ")[0] : "NO-FIRSTNAME");
+		this.apellido = user.containsKey("lastname") ? user.getString("lastname") : (user.containsKey("fullname") ? user.getString("fullname").split(" ")[1] : "NO-LASTNAME");
+		this.archivos = archivos;
+		this.archivosCompartidos = archivosCompartidos;
+	}
+
 	public AlumnoDTO(Alumno alumno){
 		this.cedula = alumno.getCedula();
+		this.moodleUserId = alumno.getMoodleUserId();
 		this.nombre = alumno.getNombre();
 		this.apellido = alumno.getApellido();
 		this.archivos = new ArrayList<>();
@@ -69,6 +86,14 @@ public class AlumnoDTO implements Serializable{
 
 	public void setArchivosCompartidos(List<ArchivoDTO> archivosCompartidos) {
 		this.archivosCompartidos = archivosCompartidos;
+	}
+
+	public Long getMoodleUserId() {
+		return moodleUserId;
+	}
+
+	public void setMoodleUserId(Long moodleUserId) {
+		this.moodleUserId = moodleUserId;
 	}
 	
 }

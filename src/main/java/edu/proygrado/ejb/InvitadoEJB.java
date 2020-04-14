@@ -5,11 +5,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.ejb.ConcurrencyManagement;
 import javax.ejb.ConcurrencyManagementType;
-import javax.ejb.Lock;
-import javax.ejb.LockType;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.ejb.TransactionAttribute;
@@ -17,13 +14,16 @@ import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.NotAuthorizedException;
-
 import edu.proygrado.dto.ArchivoDTO;
+import edu.proygrado.dto.CompartirArchivoInputDTO;
+import edu.proygrado.dto.MoodleCoursesInfoDTO;
 import edu.proygrado.matefun.InvitadoSesion;
+import edu.proygrado.matefun.MatefunException;
 import edu.proygrado.modelo.Alumno;
 import edu.proygrado.modelo.Archivo;
 import edu.proygrado.modelo.EstadoArchivo;
 import edu.proygrado.modelo.Usuario;
+import edu.proygrado.utils.StringPair;
 
 @Startup
 @Singleton
@@ -37,7 +37,6 @@ public class InvitadoEJB {
 	private Map<String, InvitadoSesion> sesiones = new HashMap<>();
 	
 	public Usuario getUsuario(String token){
-		System.out.println("getUsuario"+token);
 		InvitadoSesion invitadoSesion = sesiones.getOrDefault(token, null);
 		if (invitadoSesion != null) {
 			return invitadoSesion.getUsuario();
@@ -46,9 +45,56 @@ public class InvitadoEJB {
 		}
 	}
 
-	public void setUsuario(String token, Usuario usuario){
-		System.out.println("setUsuario"+token);
-		sesiones.put(token,new InvitadoSesion(usuario));
+	public void setUsuarioMatefunAdmin(String token, Usuario usuario){
+		sesiones.put(token,new InvitadoSesion(usuario, "NO_MOODLE_ENDPOINT_MATEFUN_ADMIN", new ArrayList<StringPair>(), -1l, null, null));
+	}
+	
+	public void setLiceoId(String token, Long liceoId) {
+		sesiones.get(token).setLiceoId(liceoId);
+	}
+	
+	public Long getLiceoId(String token) {
+		return sesiones.get(token).getLiceoId();
+	}
+	
+	public MoodleCoursesInfoDTO getCoursesInfo(String token) {
+		return sesiones.get(token).getCoursesInfo();
+	}
+
+	public void setUsuario(String token, Usuario usuario, String moodleApiEndpoint, List<StringPair> allMoodleTokens, Long liceoId, MoodleCoursesInfoDTO coursesInfo, Long moodleWebServicesUserId) throws MatefunException {
+		System.out.println("set usuario: " + token);
+		if (!sesiones.containsKey(token))
+			sesiones.put(token,new InvitadoSesion(usuario, moodleApiEndpoint, allMoodleTokens, liceoId, coursesInfo, moodleWebServicesUserId));
+		else {
+			InvitadoSesion sesion = sesiones.getOrDefault(token, null);
+			if (sesion!=null) {
+				sesion.setUsuario(usuario);
+				sesion.setMoodleApiEndpoint(moodleApiEndpoint);
+				sesion.setAllMoodleTokens(allMoodleTokens);
+				sesion.setLiceoId(liceoId);
+				sesion.setCoursesInfo(coursesInfo);
+				sesion.setMoodleWebServicesUserId(moodleWebServicesUserId);
+				sesiones.replace(token, sesion);			
+			}else {
+				throw new MatefunException("No se puede actualizar sesion.");
+			}
+		}
+	}
+	
+	public List<StringPair> getAllMoodleTokens(String token) {
+		return sesiones.get(token).getAllMoodleTokens();
+	}
+	
+	public Long getMoodleUserId(String token) {
+		return sesiones.get(token).getMoodleUserId();
+	}
+
+	public Long getMoodleWebServicesUserId(String token) {
+		return sesiones.get(token).getMoodleWebServicesUserId();
+	}
+	
+	public String getMoodleApiEndpoint(String token) {
+		return sesiones.get(token).getMoodleApiEndpoint();
 	}
 	
 	public void eliminarRecursos(String token){
@@ -320,6 +366,10 @@ public class InvitadoEJB {
 			}
 		}
 		throw new Exception("No se encuentra el archivo con id: " + archivoId);
+	}
+	
+	public ArchivoDTO compartirArchivo(CompartirArchivoInputDTO dataShareFile){
+		return null;
 	}
 
 }

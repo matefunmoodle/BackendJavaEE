@@ -4,36 +4,38 @@
  * and open the template in the editor.
  */
 package edu.proygrado.dto;
-import edu.proygrado.modelo.Alumno;
-import edu.proygrado.modelo.Docente;
+
+import java.util.List;
+import edu.proygrado.modelo.Configuracion;
 import edu.proygrado.modelo.Usuario;
 /**
  *
  * @author gonzalo
  */
 public class UsuarioDTO {
+	Long moodleUserId;
 	String token;
     String cedula;
     String nombre;
     String apellido;
     String tipo;
+    List<MoodleCourseDTO> todosLosCursos;
     ConfiguracionDTO configuracion;
-    
     
     public UsuarioDTO(){}
     
-    public UsuarioDTO(String token, Usuario usuario){
+    public UsuarioDTO(Long moodleUserId, String token, Usuario usuario,List<MoodleCourseDTO> todosLosCursos){
     	this.token = token;
         this.cedula = usuario.getCedula();
         this.nombre = usuario.getNombre();
         this.apellido = usuario.getApellido();
-        if(usuario instanceof Docente){
-            this.tipo = "docente";
-        } else if( usuario instanceof Alumno){
-            this.tipo = "alumno";
-        }
+        this.tipo = usuario.getTipo();
+        this.moodleUserId = moodleUserId;
+        this.todosLosCursos = todosLosCursos;
         if(usuario.getConfiguracion()!=null){
         	this.configuracion = new ConfiguracionDTO(usuario.getConfiguracion());
+        }else {
+        	this.configuracion = new ConfiguracionDTO(Configuracion.getConfiguracionDefault());
         }
     }
 
@@ -83,6 +85,22 @@ public class UsuarioDTO {
 
 	public void setConfiguracion(ConfiguracionDTO configuracion) {
 		this.configuracion = configuracion;
+	}
+
+	public Long getMoodleUserId() {
+		return moodleUserId;
+	}
+
+	public void setMoodleUserId(Long moodleUserId) {
+		this.moodleUserId = moodleUserId;
+	}
+
+	public List<MoodleCourseDTO> getTodosLosCursos() {
+		return todosLosCursos;
+	}
+
+	public void setTodosLosCursos(List<MoodleCourseDTO> todosLosCursos) {
+		this.todosLosCursos = todosLosCursos;
 	}
         
 }

@@ -7,19 +7,9 @@ package edu.proygrado.matefun;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import edu.proygrado.modelo.Alumno;
-import edu.proygrado.modelo.Archivo;
-import edu.proygrado.modelo.Docente;
-import edu.proygrado.modelo.EstadoArchivo;
-import edu.proygrado.modelo.Grupo;
-import edu.proygrado.modelo.GrupoPK;
-import edu.proygrado.modelo.Liceo;
 
 /**
  *

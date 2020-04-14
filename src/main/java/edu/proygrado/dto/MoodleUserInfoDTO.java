@@ -27,6 +27,7 @@ public class MoodleUserInfoDTO {
 	private Long usermaxuploadfilesize;
 	private Long userhomepage;
 	private Long siteid;
+	private Boolean userissiteadmin;
 	
 	public String getSitename() {
 		return sitename;
@@ -153,5 +154,11 @@ public class MoodleUserInfoDTO {
 	}
 	public void setSiteid(Long siteid) {
 		this.siteid = siteid;
+	}
+	public Boolean getUserissiteadmin() {
+		return userissiteadmin;
+	}
+	public void setUserissiteadmin(Boolean userissiteadmin) {
+		this.userissiteadmin = userissiteadmin;
 	}	
 }

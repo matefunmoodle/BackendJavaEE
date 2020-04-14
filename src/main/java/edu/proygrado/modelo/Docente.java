@@ -32,9 +32,8 @@ public class Docente extends Usuario {
 	public Docente() {
 	}
 
-	public Docente(String cedula, String nombre, String apellido,
-			String password) {
-		super(cedula, nombre, apellido, password, null);
+	public Docente(String cedula, Long moodleUserId, String nombre, String apellido, String roleId, String courseId, Liceo liceo, Configuracion configuracion) {
+		super(cedula, moodleUserId, nombre, apellido, liceo,  configuracion);
 		this.gruposAsignados = new ArrayList<>();
 		this.archivos = new ArrayList<>();
 	}
@@ -61,5 +60,10 @@ public class Docente extends Usuario {
 
 	public void addArchivo(Archivo archivo) {
 		this.archivos.add(archivo);
+	}
+
+	@Override
+	public String getTipo() {
+		return "docente";
 	}
 }

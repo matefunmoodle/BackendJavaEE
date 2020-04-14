@@ -23,7 +23,18 @@ public class Configuracion implements Serializable {
 	boolean argumentoI;
 	boolean argumentoF;
 	
+	public static Configuracion getConfiguracionDefault() {
+		return new Configuracion(false,false,12,"dracula");
+	}
+	
 	public Configuracion(){}
+	
+	public Configuracion(Boolean argumentoF, Boolean argumentoI, Integer fontSizeEditor, String themeEditor){
+		this.argumentoF = argumentoF;
+		this.argumentoI = argumentoI;
+		this.fontSizeEditor = fontSizeEditor;
+		this.themeEditor = themeEditor;
+	}
 	
 	public Configuracion(ConfiguracionDTO config) {
 		super();

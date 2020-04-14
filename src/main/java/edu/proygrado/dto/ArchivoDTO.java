@@ -8,24 +8,54 @@ package edu.proygrado.dto;
 import java.io.Serializable;
 import java.util.Date;
 import edu.proygrado.modelo.Archivo;
+import edu.proygrado.modelo.EstadoArchivo;
 
 /**
  *
  * @author gonzalo
  */
 public class ArchivoDTO implements Serializable {
-    long id;
+    
+	private static final long serialVersionUID = 1L;
+
+	long id;
     String nombre;
     Date fechaCreacion;
     String contenido;
     String cedulaCreador;
+    String moodleFilePath;
     boolean editable;
     boolean eliminado;
     long padreId;
     long archivoOrigenId;
-    boolean directorio;
+	boolean directorio;
     String estado;
     EvaluacionDTO evaluacion;
+    TipoArchivo tipo;
+    boolean puedeCompartir;
+    String directorioMatefun;
+    
+    @Override
+    public String toString() {
+    	return 
+    	"id: " + id +
+        ", nombre: " + nombre +
+        ", fechaCreacion: " + fechaCreacion +
+        ", cedulaCreador: " + cedulaCreador +
+        ", editable: " + editable +
+        ", moodleFilePath: " + moodleFilePath +
+        ", contenido: " + contenido +
+        ", eliminado: " + eliminado +
+        ", padreId: " + padreId +
+        ", archivoOrigenId: " + archivoOrigenId +
+        ", directorio: " + directorio +
+        ", estado: " + estado +
+        ", evaluacion: " + evaluacion +
+        ", puedeCompartir: " + puedeCompartir +
+        ", directorioMatefun: " + directorioMatefun +
+    	", tipo: " + (tipo!=null ? tipo.toString() : "null") + "]";
+    	
+    }
     
     public ArchivoDTO(){
     }
@@ -38,6 +68,30 @@ public class ArchivoDTO implements Serializable {
 		this.eliminado = eliminado;
 	}
 
+    
+	
+    public ArchivoDTO(long id, String nombre, Date fechaCreacion, String contenido, String cedulaCreador,
+			boolean editable, boolean eliminado, long padreId, long archivoOrigenId, boolean directorio, String estado,
+			String moodleFilePath, EvaluacionDTO evaluacion, TipoArchivo tipo, boolean puedeCompartir, String directorioMatefun) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.fechaCreacion = fechaCreacion;
+		this.contenido = contenido;
+		this.cedulaCreador = cedulaCreador;
+		this.editable = editable;
+		this.eliminado = eliminado;
+		this.padreId = padreId;
+		this.archivoOrigenId = archivoOrigenId;
+		this.directorio = directorio;
+		this.estado = estado;
+		this.moodleFilePath = moodleFilePath;
+		this.evaluacion = evaluacion;
+		this.tipo = tipo;
+		this.puedeCompartir = puedeCompartir;
+		this.directorioMatefun = directorioMatefun;
+	}
+	
 	public ArchivoDTO(Archivo archivo){
         this.id = archivo.getId();
         this.nombre = archivo.getNombre();
@@ -153,6 +207,57 @@ public class ArchivoDTO implements Serializable {
 
 	public void setEvaluacion(EvaluacionDTO evaluacion) {
 		this.evaluacion = evaluacion;
+	}
+
+	public static ArchivoDTO rootDir(Long rootId, String creador) {
+		ArchivoDTO root = new ArchivoDTO();
+		
+		root.setId(rootId);
+		root.setNombre("root");
+		root.setFechaCreacion(new Date());
+		root.setContenido("Carpeta raiz");
+		root.setCedulaCreador(creador);
+		root.setEditable(true);
+		root.setEliminado(false);
+		root.setPadreId(-1l);
+		root.setArchivoOrigenId(-1l);
+		root.setDirectorio(true);
+		root.setEstado(EstadoArchivo.Edicion.toString());
+		root.setEvaluacion(new EvaluacionDTO());
+		root.setMoodleFilePath("/");//TODO:OJO
+		return root;
+	}
+
+	public String getMoodleFilePath() {
+		return moodleFilePath;
+	}
+
+	public void setMoodleFilePath(String moodleFilePath) {
+		this.moodleFilePath = moodleFilePath;
+	}
+
+	public TipoArchivo getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(TipoArchivo tipo) {
+		this.tipo = tipo;
+	}
+
+	public boolean isPuedeCompartir() {
+		return puedeCompartir;
+	}
+
+	public void setPuedeCompartir(boolean puedeCompartir) {
+		this.puedeCompartir = puedeCompartir;
+	}
+
+	public String getDirectorioMatefun() {
+		return directorioMatefun;
+	}
+
+	public void setDirectorioMatefun(String directorioMatefun) {
+		this.directorioMatefun = directorioMatefun;
 	}
 
 }

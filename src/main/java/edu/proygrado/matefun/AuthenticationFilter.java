@@ -1,7 +1,6 @@
 package edu.proygrado.matefun;
 
 import java.io.IOException;
-
 import javax.annotation.Priority;
 import javax.inject.Inject;
 import javax.ws.rs.Priorities;
@@ -11,8 +10,8 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
-
 import edu.proygrado.ejb.LoginEJB;
+
 
 @Provider
 @Priority(Priorities.AUTHENTICATION)
@@ -24,7 +23,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 	@Override
 	public void filter(ContainerRequestContext context) throws IOException {
 		String path = context.getUriInfo().getPath();
-		if(path.contains("login")){
+		if(path.contains("login") || path.contains("getAllLiceos") || path.contains("getMatefunAdmin") ){
 			return;
 		}
 		

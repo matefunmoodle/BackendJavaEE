@@ -12,7 +12,6 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.Table;
 
 /**
  *
@@ -26,6 +25,7 @@ public class Grupo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@EmbeddedId
     private GrupoPK grupoPK;
+	
     @ManyToMany
     @JoinTable(name="ARCHIVOS_COMPARTIDOS_GRUPO")
     private List<Archivo> archivos;

@@ -31,8 +31,8 @@ public class Alumno extends Usuario{
     public Alumno() {
     }
 
-    public Alumno(String cedula, String nombre, String apellido, String password) {
-        super(cedula, nombre, apellido, password,null);
+    public Alumno(String cedula, Long moodleUserId, String nombre, String apellido, Liceo liceo, Configuracion configuracion) {
+        super(cedula, moodleUserId, nombre, apellido, liceo,  configuracion);
         this.archivos = new ArrayList<>();
         this.archivosCompartidos = new ArrayList<>();
     }
@@ -60,5 +60,10 @@ public class Alumno extends Usuario{
     public void addArchivoCompartido(Archivo archivo){
     	this.archivosCompartidos.add(archivo);
     }
+
+	@Override
+	public String getTipo() {
+		return "alumno";
+	}
     
 }
